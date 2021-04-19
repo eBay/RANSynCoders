@@ -4,7 +4,7 @@
 
 ### Industry-Practical Anomaly Detection and Localization for Asynchronous Multivariate Time Series
 
-RANSynCoders (or RANCoders) is an unsupervised deep learning architecture for real-time detection and localizaiton within large multivariate time series. The method utilizes synchrony-analysis on latent representations for adjusting asynchronous variates fed into an encoder, bootstrap aggregation of decoders, and quantile loss optimization for anomaly inference, localization, as well as optionally creating interpretable charts of anomalies for industy users.
+RANSynCoders (or RANCoders) is an unsupervised deep learning architecture for real-time anomaly detection and localizaiton within large multivariate time series. The method utilizes synchrony-analysis on latent representations for adjusting asynchronous variates fed into an encoder, bootstrap aggregation of decoders, and quantile loss optimization for anomaly inference, localization, as well as optionally creating interpretable charts of anomalies for industy users.
 
 
 
