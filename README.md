@@ -58,3 +58,9 @@ If you are utilizing this work in any way, please cite the following papers as a
     Abdulaal, A., Liu, Z., Lancwicki, T. (2021).
     Practical Approach to Asynchronous Multivariate Time Series Anomaly Detection and Localization.
     Proceedings of the 27th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining, August 14-18, 2021
+
+## Copyright and licensing
+
+Copyright 2021 eBay inc
+
+The content of this repository are released under the BSD-3 license. More information are provided in the LICENSE file
