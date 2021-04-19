@@ -63,4 +63,6 @@ If you are utilizing this work in any way, please cite the following papers as a
 
 Copyright 2021 eBay inc
 
-The content of this repository are released under the BSD-3 license. More information are provided in the LICENSE file
+The content of this repository (other than sample data) are released under the BSD-3 license. More information are provided in the LICENSE file
+
+The sample data files are released under the Creative Commons Attribution 4.0 Internation License (<https://creativecommons.org/licenses/by/4.0/>). More information are provided in the data/LICENSE file
