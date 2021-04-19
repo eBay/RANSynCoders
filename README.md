@@ -61,6 +61,6 @@ If you are utilizing this work in any way, please cite the following papers as a
 
 ## Copyright and licensing
 
-Copyright 2021 eBay inc
+Copyright 2021 eBay Inc
 
 The content of this repository are released under the BSD-3 license. More information are provided in the LICENSE file
