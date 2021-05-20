@@ -47,13 +47,13 @@ An example using the attached PSM dataset, including instructions for inference 
 
 If you are utilizing this work in any way, please cite the following papers as appropriate:
 
-### Impact of Synchronization on Representation Learning (ICASSP 2021 - Accepted):
+### Impact of Synchronization on Representation Learning (ICASSP 2021 - Published):
 
     Abdulaal, A., Lancewicki, T. (2021).
     Real-Time Synchronization in Neural Networks for Multivariate Time Series Anomaly Detection.
     2021 IEEE International Conference on Acoustics, Speech, and Signal Processing, June 6-11, 2021
 
-### RANSynCoders (KDD 2021 - Submitted):
+### RANSynCoders (KDD 2021 - Accepted):
 
     Abdulaal, A., Liu, Z., Lancwicki, T. (2021).
     Practical Approach to Asynchronous Multivariate Time Series Anomaly Detection and Localization.
