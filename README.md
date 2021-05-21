@@ -41,7 +41,7 @@ If installing on CUDA-enabled GPU device, add the following packages to the requ
 
 #### Running an Example
 
-An example using the attached PSM dataset, including instructions for inference and evaluation, is provided in the notebook `example.ipynb`, including instructions for inference and 
+An example using the attached PSM dataset, including instructions for inference and evaluation, is provided in the notebook `example.ipynb`.
 
 ## How to cite
 
@@ -52,6 +52,7 @@ If you are utilizing this work in any way, please cite the following papers as a
     Abdulaal, A., Lancewicki, T. (2021).
     Real-Time Synchronization in Neural Networks for Multivariate Time Series Anomaly Detection.
     2021 IEEE International Conference on Acoustics, Speech, and Signal Processing, June 6-11, 2021
+click [here](https://ieeexplore.ieee.org/document/9413847) to access the above publication.
 
 ### RANSynCoders (KDD 2021 - Accepted):
 
