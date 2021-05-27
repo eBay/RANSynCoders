@@ -56,7 +56,7 @@ click [here](https://ieeexplore.ieee.org/document/9413847) to access the above p
 
 ### RANSynCoders (KDD 2021 - Accepted):
 
-    Abdulaal, A., Liu, Z., Lancwicki, T. (2021).
+    Abdulaal, A., Liu, Z., Lancewicki, T. (2021).
     Practical Approach to Asynchronous Multivariate Time Series Anomaly Detection and Localization.
     Proceedings of the 27th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining, August 14-18, 2021
 
