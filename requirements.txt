@@ -6,5 +6,5 @@ numpy == 1.19.2
 pandas == 1.1.5
 scikit-learn == 0.23.2
 scipy == 1.5.2
-spectru == 0.7.5
+spectrum == 0.7.5
 tensorflow == 2.1.0
