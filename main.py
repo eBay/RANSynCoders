@@ -92,8 +92,6 @@ class RANSynCoders():
                 sin_out = sincoder(freq_init=self.freq_init, trainable_freq=self.trainable_freq)(t_in)
                 self.sincoder = Model(inputs=t_in, outputs=sin_out)
                 self.sincoder.compile(optimizer='adam', loss=lambda y,f: quantile_loss(0.5, y,f))
-                
-            
         
     def fit(
             self, 
@@ -331,18 +329,21 @@ class RANSynCoders():
             file['sincoder'] = {'model': self.sincoder.to_json(), 'weights': self.sincoder.get_weights()}
         file['rancoders'] = {'model': self.rancoders.to_json(), 'weights': self.rancoders.get_weights()}
         dump(file, filepath, compress=True)
-        
-    def load(self, filepath: str = os.path.join(os.getcwd(), 'ransyncoders.z')):
+    
+    @classmethod
+    def load(cls, filepath: str = os.path.join(os.getcwd(), 'ransyncoders.z')):
         file = load(filepath)
+        cls = cls()
         for param, val in file['params'].items():
-            setattr(self, param, val)
-        if self.synchronize:
-            self.freqcoder = model_from_json(file['freqcoder']['model'], custom_objects={'freqcoder': freqcoder})
-            self.freqcoder.set_weights(file['freqcoder']['weights'])
-            self.sincoder = model_from_json(file['sincoder']['model'], custom_objects={'sincoder': sincoder})
-            self.sincoder.set_weights(file['sincoder']['weights'])
-        self.rancoders = model_from_json(file['rancoders']['model'], custom_objects={'RANCoders': RANCoders})  
-        self.rancoders.set_weights(file['rancoders']['weights'])
+            setattr(cls, param, val)
+        if cls.synchronize:
+            cls.freqcoder = model_from_json(file['freqcoder']['model'], custom_objects={'freqcoder': freqcoder})
+            cls.freqcoder.set_weights(file['freqcoder']['weights'])
+            cls.sincoder = model_from_json(file['sincoder']['model'], custom_objects={'sincoder': sincoder})
+            cls.sincoder.set_weights(file['sincoder']['weights'])
+        cls.rancoders = model_from_json(file['rancoders']['model'], custom_objects={'RANCoders': RANCoders})  
+        cls.rancoders.set_weights(file['rancoders']['weights'])
+        return cls
         
     def get_config(self):
         config = {
@@ -364,7 +365,6 @@ class RANSynCoders():
             "bias": self.bias,
         }
         return config
-        
         
         
 # Loss function
