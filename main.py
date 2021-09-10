@@ -333,6 +333,7 @@ class RANSynCoders():
     @classmethod
     def load(cls, filepath: str = os.path.join(os.getcwd(), 'ransyncoders.z')):
         file = load(filepath)
+        cls = cls()
         for param, val in file['params'].items():
             setattr(cls, param, val)
         if cls.synchronize:
