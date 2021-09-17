@@ -344,6 +344,16 @@ class RANSynCoders():
         cls.rancoders = model_from_json(file['rancoders']['model'], custom_objects={'RANCoders': RANCoders})  
         cls.rancoders.set_weights(file['rancoders']['weights'])
         return cls
+    
+    def desynchronize(self, e: np.ndarray):
+        if self.synchronize:
+            b = self.sincoder.layers[1].wb / self.sincoder.layers[1].freq  # phase shift(s)
+            return e * tf.sin(
+                self.sincoder.layers[1].freq[0] * ((np.pi / (2 * self.sincoder.layers[1].freq[0])) + b[:,0])
+            ).numpy()
+        else:
+            raise ParameterError('synchronize', 'parameter not set correctly for this method')
+        
         
     def get_config(self):
         config = {
@@ -371,6 +381,13 @@ class RANSynCoders():
 def quantile_loss(q, y, f):
     e = (y - f)
     return K.mean(K.maximum(q*e, (q-1)*e), axis=-1)
+
+
+class ParameterError(Exception):
+
+    def __init__(self, expression, message):
+        self.expression = expression
+        self.message = message
 
         
 
