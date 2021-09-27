@@ -281,7 +281,7 @@ class RANSynCoders():
                     end='\r'
                 )
             
-    def predict(self, x: np.ndarray, t: np.ndarray, batch_size: int = 1000):
+    def predict(self, x: np.ndarray, t: np.ndarray, batch_size: int = 1000, desync: bool = False):
         # Prepare the training batches.
         dataset = tf.data.Dataset.from_tensor_slices((x.astype(np.float32), t.astype(np.float32)))
         dataset = dataset.batch(batch_size)
@@ -307,6 +307,8 @@ class RANSynCoders():
                 ) + self.sincoder.layers[1].disp + e).numpy()  
                 o_hi_i, o_lo_i = self.rancoders(x_sync_i)
                 o_hi_i, o_lo_i = tf.transpose(o_hi_i, [1,0,2]).numpy(), tf.transpose(o_lo_i, [1,0,2]).numpy()
+                if desync:
+                    o_hi_i, o_lo_i = self.predict_desynchronize(x_batch, x_sync_i, o_hi_i, o_lo_i)
                 s[step], x_sync[step], o_hi[step], o_lo[step]  = s_i, x_sync_i, o_hi_i, o_lo_i
             return (
                 np.concatenate(s, axis=0), 
@@ -344,6 +346,19 @@ class RANSynCoders():
         cls.rancoders = model_from_json(file['rancoders']['model'], custom_objects={'RANCoders': RANCoders})  
         cls.rancoders.set_weights(file['rancoders']['weights'])
         return cls
+    
+    def predict_desynchronize(self, x: np.ndarray, x_sync: np.ndarray, o_hi: np.ndarray, o_lo: np.ndarray):
+        if self.synchronize:
+            E = (o_hi + o_lo)/ 2  # expected values
+            deviation = tf.expand_dims(x_sync, axis=1) - E  # input (synchronzied) deviation from expected
+            deviation = self.desynchronize(deviation)  # desynchronize
+            E = tf.expand_dims(x, axis=1) - deviation  # expected values in desynchronized form
+            offset = (o_hi - o_lo) / 2  # this is the offet from the expected value
+            offset = abs(self.desynchronize(offset))  # desynch
+            o_hi, o_lo = E + offset, E - offset  # add bound displacement to expected values
+            return o_hi.numpy(), o_lo.numpy()  
+        else:
+            raise ParameterError('synchronize', 'parameter not set correctly for this method')
     
     def desynchronize(self, e: np.ndarray):
         if self.synchronize:
