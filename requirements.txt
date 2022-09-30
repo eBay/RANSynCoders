@@ -1,5 +1,5 @@
 # pip install -r requirements.txt
-joblib == 1.0.0
+joblib == 1.2.0
 jupyter == 1.0.0
 keras == 2.3.1
 numpy == 1.22.0
